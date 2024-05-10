@@ -1,0 +1,16 @@
+{
+    "surveys": [
+{
+    "id": 1,
+    "name": "survey 1",
+    "tarih": "02.11.2020",
+    "description": "SURVEY 1"
+  },
+  {
+    "id": 2,
+    "name": "survey 2",
+    "tarih": "02.11.2020",
+    "description": "SURVEY 2"
+  }
+]
+}
