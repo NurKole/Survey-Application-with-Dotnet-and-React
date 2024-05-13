@@ -11,32 +11,27 @@ namespace surveyyy.Controllers
     [ApiController]
     public class FormController : ControllerBase
     {
-        // [HttpPost]
-        // public IActionResult SubmitForm([FromBody] FormData formData)
-        // {
-           
-        //      using (var context = new FormContext())
-        //      {
-        //          context.FormDatas.Add(formData);
-        //         context.SaveChanges();
-        //      }
+        private readonly FormContext _context;
 
-        //     return Ok();
-        // }
-    }
-public class FormData
-{
-    public FormData()
-    {
-        HeardOfCompany = "";
-        DesiredField = "";
-        Technologies = new List<string>();
-        AboutYourself = "";
+        public FormController(FormContext context)
+        {
+            _context = context ?? throw new ArgumentNullException(nameof(context));
+        }
+
+        [HttpPost]
+        public IActionResult SubmitForm([FromBody] FormData formData)
+        {
+            if (_context != null && formData != null)
+            {
+                _context.FormDatas.Add(formData);
+                _context.SaveChanges();
+                return Ok();
+            }
+            else
+            {
+                return BadRequest("Context or form data is null.");
+            }
+        }
     }
 
-    public string HeardOfCompany { get; set; }
-    public string DesiredField { get; set; }
-    public List<string> Technologies { get; set; }
-    public string AboutYourself { get; set; }
-}
 }
